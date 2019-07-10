@@ -6,43 +6,43 @@ order: 2
 
 ## What is Vue.js?
 
-Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](single-file-components.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#components--libraries).
+Vue (uttalas /vjuː/ såsom **view** i engelskan) är ett **progressivt ramverk** för att bygga användargränssnitt. Till skillnad från andra monolitiska ramverk designas Vue från början så att det kan stegvist adopteras. Kärnbiblioteket fokuserar på bara presentationen (the view layer) och är enkelt att komma igång med och integrerar med andra projekt. Å andra sidan har Vue förmåga att driva sofistikerade enkelsidiga applikationer (härefter SPAs) i samband med [moderna verktyg](single-file-components.html) och [stödjande bibliotek](https://github.com/vuejs/awesome-vue#components--libraries).
 
-If you’d like to learn more about Vue before diving in, we <a id="modal-player"  href="#">created a video</a> walking through the core principles and a sample project.
+Om du skulle vilja lära dig mer om Vue innan vi kommer igång då <a id="modal-player"  href="#">titta på denna video</a> som ska gå igenom grunderna med ett provprojekt.
 
-If you are an experienced frontend developer and want to know how Vue compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html).
+Om du däremot är erfaren utvecklare och vill se Vue jämföras med andra bibliotek/ramverk kolla då [Jämförelsen med andra ramverk](comparison.html).
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Free Vue.js Course">Watch a free video course on Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Free Vue.js Course">Titta på en gratis videokurs på Vue Mastery</a></div>
 
-## Getting Started
+## Att komma igång
 
 <a class="button" href="installation.html">Installation</a>
 
-<p class="tip">The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
+<p class="tip">Den officiella guiden förmodar en mellanliggande kunskapsnivå på HTML, CSS och Javascript. Om du är helt ny till frontend utveckling då bör du nog inte försöka lära dig ett ramverk förrän du har lärt dig webbutvecklingsgrunderna. Tidigare erfarenheter med andra ramverk är inte nödvändiga men blir troligtvis användbara.</p>
 
-The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html" rel="noopener noreferrer">create an <code>index.html</code> file</a> and include Vue with:
+Det enklaste sättet att pröva Vue.js är att använda vårt [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Öppna gärna det i en ny flik och följ med medan vi går igenom några exempel. Eller så kan du <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html" rel="noopener noreferrer">skapa en <code>index.html</code> fil</a> och inkluderar Vue med:
 
 ``` html
-<!-- development version, includes helpful console warnings -->
+<!-- utvecklingsversion med hjälpsamma konsolvarningar -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
-or:
+eller:
 
 ``` html
-<!-- production version, optimized for size and speed -->
+<!-- "production" version, optimerad for storlek och hastighet -->
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-The [Installation](installation.html) page provides more options of installing Vue. Note: We **do not** recommend that beginners start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
+[Installationssidan](installation.html) ger fler alternativ för att installera Vue. **Obs.** Vi **rekommenderar inte** att nybörjare börjar med `vue-cli`, särskilt om inte man är bekant med Node.js-baserat byggverktyg.
 
-If you prefer something more interactive, you can also check out [this tutorial series on Scrimba](https://scrimba.com/playlist/pXKqta), which gives you a mix of screencast and code playground that you can pause and play around with anytime.
+Om du föredrar något lite interaktivare kan du också kolla upp [denna tutorial-serie på Scrimba](https://scrimba.com/playlist/pXKqta), som ger dig en bladning av screencast och kodlekplats där du kan pausa och göra experiment när som helst.
 
-## Declarative Rendering
+## Deklarativt rendering
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">Pröva denna lektion på Scrimba</a></div>
 
-At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
+Vid Vues kärna ligger ett system som gör det möjligt att rendera deklarativt data till dokumentobjektmodellen (härefter DOM:n) via en rätt så enkel mallsyntax:
 
 ``` html
 <div id="app">
@@ -53,7 +53,7 @@ At the core of Vue.js is a system that enables us to declaratively render data t
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    message: 'Hallå Vue!'
   }
 })
 ```
@@ -65,21 +65,20 @@ var app = new Vue({
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    message: 'Hallå Vue!'
   }
 })
 </script>
 {% endraw %}
 
-We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Open your browser's JavaScript console (right now, on this page) and set `app.message` to a different value. You should see the rendered example above update accordingly.
+Därmed har vi skapat vår första Vue-app! Det liknar alldeles att rendera en strängmall men Vue har gjort mycket arbete i bakgrunden. Datan och DOM:n är kopplade och allt är **reaktivt**. Hur vet man? Öppna webbläsarens webbkonsol (direkt, på denna sida) och sätt `app.message` till en annan värde. Således ser du exemplet uppdateras.
 
-In addition to text interpolation, we can also bind element attributes like this:
+Dessutom "text interpolation" kan vi binda element-attributer så här:
 
 ``` html
 <div id="app-2">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds
-    to see my dynamically bound title!
+    Flytta muspekaren här i några sekunder för att se en dynamiskt bunden titel!
   </span>
 </div>
 ```
@@ -87,27 +86,27 @@ In addition to text interpolation, we can also bind element attributes like this
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString()
+    message: 'Du öppnade denna sida på ' + new Date().toLocaleString()
   }
 })
 ```
 {% raw %}
 <div id="app-2" class="demo">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds to see my dynamically bound title!
+    Flytta muspekaren här i några sekunder för att se en dynamiskt bunden titel!
   </span>
 </div>
 <script>
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString()
+    message: 'Du öppnade denna sida på ' + new Date().toLocaleString()
   }
 })
 </script>
 {% endraw %}
 
-Here we are encountering something new. The `v-bind` attribute you are seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
+Här har vi stött på något nytt. `v-bind`-attributen som du ser ovan heter ett **direktiv** (directive). Direktiv börjar med `v-` för att tyda på att they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
 
 If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
 
