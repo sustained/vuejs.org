@@ -106,19 +106,20 @@ var app2 = new Vue({
 </script>
 {% endraw %}
 
-Här har vi stött på något nytt. `v-bind`-attributen som du ser ovan heter ett **direktiv** (directive). Direktiv börjar med `v-` för att tyda på att they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
+Här har vi stött på något nytt. `v-bind`-attributen som du ser ovan heter ett **direktiv** (directive). Direktiv börjar med `v-` för att tyda på att de är speciella attributer som ges av Vue och som du kanske har gissat tillämpar de särskilt reaktivt beteende till den renderade DOM:n. Det uppger helt enkelt att titel-attributen ska uppdateras när `message`-egenskapen än ändras på Vue-instansen.
 
-If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
+Om du öppnar webbkonsolen igen och anger `app2.message = 'nåt nytt meddelande', kommer du lägga märke till att den bundna HTML:n har ändrats - i detta fall så har titel-attributen uppdaterats.
 
-## Conditionals and Loops
+## Villkor och slingar
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">Pröva denna lektion på Scrimba</a></div>
 
-It's easy to toggle the presence of an element, too:
+Det är lätt att ändra en elements närvaro också:
+
 
 ``` html
 <div id="app-3">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">Nu ser du mig</span>
 </div>
 ```
 
@@ -133,7 +134,7 @@ var app3 = new Vue({
 
 {% raw %}
 <div id="app-3" class="demo">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">Nu ser du mig</span>
 </div>
 <script>
 var app3 = new Vue({
@@ -145,11 +146,11 @@ var app3 = new Vue({
 </script>
 {% endraw %}
 
-Go ahead and enter `app3.seen = false` in the console. You should see the message disappear.
+Varsågod ange `app3.seen = false` i webbkonsolen. Du ska se att meddelandet försvinner.
 
-This example demonstrates that we can bind data to not only text and attributes, but also the **structure** of the DOM. Moreover, Vue also provides a powerful transition effect system that can automatically apply [transition effects](transitions.html) when elements are inserted/updated/removed by Vue.
+Det här exemplet bevisar att vi kan binda data till inte bara text och attributer utan även själva strukturen av DOM:n. Dessutom ger Vue ett kraftfull transition-system som kan automatiskt applicera [transitionseffekter](transitions.html) när element läggs till/upddateras/tas bort av Vue.
 
-There are quite a few other directives, each with its own special functionality. For example, the `v-for` directive can be used for displaying a list of items using the data from an Array:
+Det är ganska många andra direktiv med var sin särskilda funktionalitet. Till exempel kan v-for`-direktiven användas för att visa en lista över artiklar med datan från ett fält:
 
 ``` html
 <div id="app-4">
@@ -165,9 +166,9 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'Lär mig JavaScript' },
+      { text: 'Lär mig Vue' },
+      { text: 'Bygger nåt fantastiskt' }
     ]
   }
 })
@@ -185,16 +186,16 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'Lär mig JavaScript' },
+      { text: 'Lär mig Vue' },
+      { text: 'Bygger nåt fantastiskt' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-In the console, enter `app4.todos.push({ text: 'New item' })`. You should see a new item appended to the list.
+I webbkonsolen ange `app4.todos.push({ text: 'Ny artikel' })`. Du borde se ett nytt element läggs till i listan.
 
 ## Handling User Input
 
