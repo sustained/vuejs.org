@@ -197,23 +197,24 @@ var app4 = new Vue({
 
 I webbkonsolen ange `app4.todos.push({ text: 'Ny artikel' })`. Du borde se ett nytt element läggs till i listan.
 
-## Handling User Input
+## Att hantera användinmatning
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Pröva denna lektion på Scrimba</a></div>
 
-To let users interact with your app, we can use the `v-on` directive to attach event listeners that invoke methods on our Vue instances:
+I avsikt att låta användare interagerar med din app kan vi använda `v-on`-direktivet för att attach event listeners (TRANSLATE!) som anropar metoder på våra Vue-instanser:
+
 
 ``` html
 <div id="app-5">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">Vänd meddelandet</button>
 </div>
 ```
 ``` js
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Hallå Vue.js!'
   },
   methods: {
     reverseMessage: function () {
@@ -225,13 +226,13 @@ var app5 = new Vue({
 {% raw %}
 <div id="app-5" class="demo">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">Vänd meddelandet</button>
 </div>
 <script>
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Hallå Vue.js!'
   },
   methods: {
     reverseMessage: function () {
@@ -242,9 +243,9 @@ var app5 = new Vue({
 </script>
 {% endraw %}
 
-Note that in this method we update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
+Obs. I den här metoden uppdaterar vi appens tillstånd utan att röra DOM:n - alla DOM-manipulationer hanteras av Vue, vilket ger dig (och koden som du skriver) möjlighet att fokusera på den bakomliggande logiken.
 
-Vue also provides the `v-model` directive that makes two-way binding between form input and app state a breeze:
+Vue ger också `v-model`-direktivet som gör det lätt som en plätt att få tvåvägsbindning (TRANSLATE?) mellan formulärsinmatningen (TRANSLATE?) och appen.
 
 ``` html
 <div id="app-6">
@@ -256,7 +257,7 @@ Vue also provides the `v-model` directive that makes two-way binding between for
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!'
+    message: 'Hallå Vue!'
   }
 })
 ```
@@ -269,60 +270,62 @@ var app6 = new Vue({
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!'
+    message: 'Hallå Vue!'
   }
 })
 </script>
 {% endraw %}
 
-## Composing with Components
+## Att sammansätta (TRANSLATE?) komponenter
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Pröva denna lektion på Scrimba</a></div>
 
-The component system is another important concept in Vue, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
+Komponentssystemet är ett till viktigt begrepp i Vue därför att det är an abstraktion som låter oss bygga storskaliga applikationer som sammansätts (TRANSLATE?) av små, fristående och oftast återanvändbara komponenter. Om vi tänker på det så kan vilket applikationsgränssnitt som helst abstraheras till ett komponentsträd (TRANSLATE?).
 
-![Component Tree](/images/components.png)
+![Komponentsträdet](/images/components.png)
 
-In Vue, a component is essentially a Vue instance with pre-defined options. Registering a component in Vue is straightforward:
+Med Vue är en komponent i grund och botten en Vue-instans med fördefinerade alternativ. Att registrera en komponent i Vue är lätt:
 
 ``` js
-// Define a new component called todo-item
+// Definiera en ny komponent som heter todo-item
 Vue.component('todo-item', {
-  template: '<li>This is a todo</li>'
+  template: '<li>Detta är a todo (TRANSLATE!)</li>'
 })
 ```
 
-Now you can compose it in another component's template:
+Nu kan den används i en annan komponents mall:
+
 
 ``` html
 <ol>
-  <!-- Create an instance of the todo-item component -->
+  <!-- Skapa en instans av todo-item-komponenten -->
   <todo-item></todo-item>
 </ol>
 ```
 
-But this would render the same text for every todo, which is not super interesting. We should be able to pass data from the parent scope into child components. Let's modify the component definition to make it accept a [prop](components.html#Props):
+Men detta skulle rendera samma text för varje todo (TRANSLATE?) vilket inte är särskilt intresserande. Vi skulle kunna skicka data från the parent scope (TRANSLATE!) in i child components (TRANSLATE!). Låt oss modifiera komponentsdefinitionen så att den ska ta en [egenskap](components.html#Props) (TRANSLATE!).
 
 ``` js
 Vue.component('todo-item', {
-  // The todo-item component now accepts a
-  // "prop", which is like a custom attribute.
-  // This prop is called todo.
+  // todo-item-komponenten tar nu en egenskap ("prop"),
+  // betrakta den som en custom (TRANSLATE!) HTML-attribut.
+  // Denna attribut heter todo.
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
 })
 ```
 
-Now we can pass the todo into each repeated component using `v-bind`:
+Nu kan vi skicka (TRANSLATE?) todo-artikeln till varje upprepade komponent via `v-bind`:
 
 ``` html
 <div id="app-7">
   <ol>
     <!--
-      Now we provide each todo-item with the todo object
-      it's representing, so that its content can be dynamic.
-      We also need to provide each component with a "key",
-      which will be explained later.
+      Varje todo-item motsvarar en artikel i groceryList-
+      -objekten. Vi bindar då varje todo-items todo-egenskap 
+      till den motsvarande  artikeln med `v-bind:todo="item`. 
+      Varje komponent behövs också en nyckel (TRANSLATE?) som
+      ska förklaras senare.
     -->
     <todo-item
       v-for="item in groceryList"
@@ -342,9 +345,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'Grönsaker' },
+      { id: 1, text: 'Ost' },
+      { id: 2, text: 'Vad som helst annat människor borde äta' }
     ]
   }
 })
@@ -364,18 +367,18 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'Grönsaker' },
+      { id: 1, text: 'Ost' },
+      { id: 2, text: 'Vad som helst annat människor borde äta' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-This is a contrived example, but we have managed to separate our app into two smaller units, and the child is reasonably well-decoupled from the parent via the props interface. We can now further improve our `<todo-item>` component with more complex template and logic without affecting the parent app.
+Detta är ett konstlat exempel men vi har lyckats skilja vår app in i två mindre enheter och barnet (TRANSLATE?) är relativt decoupled (TRANSLATE!) från föräldern via egemskapsgränssnittet (TRANSLATE?). Detta innebär att ytterligare förbättringar till `<todo-item>`-komponenten kan göras utan att påverkar föräldoappen (TRANSLATE?).
 
-In a large application, it is necessary to divide the whole app into components to make development manageable. We will talk a lot more about components [later in the guide](components.html), but here's an (imaginary) example of what an app's template might look like with components:
+I en stor applikation är det nödvändigt att dela hela appen in i komponenter för att göra utvecklingen hanterligt. Vi pratar mer om komponenter [senare i guiden](components.html) men här är ett inbillat exempel på hur en apps mall kan se ut med komponenter:
 
 ``` html
 <div id="app">
@@ -387,18 +390,18 @@ In a large application, it is necessary to divide the whole app into components 
 </div>
 ```
 
-### Relation to Custom Elements
+### Förhållande till Custom Elements (TRANSLATE!)
 
-You may have noticed that Vue components are very similar to **Custom Elements**, which are part of the [Web Components Spec](https://www.w3.org/wiki/WebComponents/). That's because Vue's component syntax is loosely modeled after the spec. For example, Vue components implement the [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) and the `is` special attribute. However, there are a few key differences:
+Du kanske lagt märke till att Vue-komponenter liknar mycket **Custom Elements**, som tillhör [Web Components Spec](https://www.w3.org/wiki/WebComponents/). Det är på grund av att Vues komponentsyntax (TRANSLATE?) baserats löst på specifikationen. T.ex genomför Vue-komponenter [Slot API:t](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) och den speciella `is`-attributen. Dock finns det en del viktiga skillnader:
 
-1. The Web Components Spec has been finalized, but is not natively implemented in every browser. Safari 10.1+, Chrome 54+ and Firefox 63+ natively support web components. In comparison, Vue components don't require any polyfills and work consistently in all supported browsers (IE9 and above). When needed, Vue components can also be wrapped inside a native custom element.
+1. The Web Components Spec (TRANSLATE!) har slutföras men är inte natively implemented (TRANSLATE!) i varje webbläsare. Safari 10.1+, Chrome 54+ och Firefox 63+ natively (TRANSLATE!) stödjer webbkomponenter. I jämförelse kräver Vue-komponenter ej några polyfills (TRANSLATE!) och fungerar konsekvent i alla stödda webbläsare (IE9 och över). När det behövs kan Vue-komponenter slås in en native custom element (TRANSLATE!).
 
-2. Vue components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and build tool integrations.
+2. Vue-komponenter ger viktiga fuktioner som inte är tillgängliga med enkla custom (TRANSLATE!) element. Sådana som tvärskomponent dataflöde, custom (TRANSLATE!) händelsekommunikation och byggverktygsintegrering (TRANSLATE?).
 
-Although Vue doesn't use custom elements internally, it has [great interoperability](https://custom-elements-everywhere.com/#vue) when it comes to consuming or distributing as custom elements. Vue CLI also supports building Vue components that register themselves as native custom elements.
+Fastän Vue använder ej custom (TRANSLATE!) element internt har det [great interoperability](https://custom-elements-everywhere.com/#vue) (TRANSLATE!) när det gäller att förbruka eller fördela som custom (TRANSLATE) element. Vue CLI stödjer också att bygga Vue-komponenter som registrerar sig som native custom (TRANSLATE!) elements.
 
-## Ready for More?
+## Redo för mer?
 
-We've briefly introduced the most basic features of Vue.js core - the rest of this guide will cover them and other advanced features with much finer details, so make sure to read through it all!
+Vi har presenterat kortfattat Vues grundfunktioner - resten av den här guiden ska beskriva dem och andra avancerade funktioner in i minsta detalj, så se till att du läsa igenom den!
 
-<div id="video-modal" class="modal"><div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%; margin: 0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script><p class="modal-text">Video by <a href="https://www.vuemastery.com" target="_blank" rel="noopener" title="Vue.js Courses on Vue Mastery">Vue Mastery</a>. Watch Vue Mastery’s free <a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Vue.js Courses on Vue Mastery">Intro to Vue course</a>.</div>
+<div id="video-modal" class="modal"><div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%; margin: 0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script><p class="modal-text">Video av <a href="https://www.vuemastery.com" target="_blank" rel="noopener" title="Vue.js kurser på Vue Mastery">Vue Mastery</a>. Titta på Vue Mastery's gratis <a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Vue.js kurser på Vue Mastery">Intro till Vue kurs</a>.</div>
