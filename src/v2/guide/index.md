@@ -106,7 +106,7 @@ var app2 = new Vue({
 </script>
 {% endraw %}
 
-Här har vi stött på något nytt. `v-bind`-attributet som du ser ovan kallas för **direktiv** (directive). Direktiv börjar med `v-` för att tyda på att de är speciella attribut som ges av Vue, och som du kanske har gissat, tillämpar de särskilt reaktivt beteende till den renderade DOM:n. Det uppger helt enkelt att titel-attributet ska uppdateras när `message`-egenskapen än ändras på Vue-instansen.
+Här har vi stött på något nytt. `v-bind`-attributet som du ser ovan kallas **direktiv** (directive). Direktiv börjar med `v-` för att tyda på att de är speciella attribut som ges av Vue, och som du kanske har gissat, tillämpar de särskilt reaktivt beteende till den renderade DOM:n. Det uppger helt enkelt att titel-attributet ska uppdateras när `message`-egenskapen än ändras på Vue-instansen.
 
 Om du öppnar webbkonsolen igen och anger `app2.message = 'nåt nytt meddelande', kommer du lägga märke till att den bundna HTML:n har ändrats - i detta fall så har titel-attributen uppdaterats.
 
